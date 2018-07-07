@@ -176,6 +176,19 @@ function getmywishlist(userid){
         })
     })
 }
+function sendmsg(id,sender,receiver,msg){
+    return new Promise(function(resolve,reject){
+        connection.query(`INSERT INTO msg (bookid,sender,receiver,msg) VALUES (${id},'${sender}','${receiver}','${msg}')`,
+        function(err,rows,cols){
+            if(err){
+                reject(err);
+            }else{
+                resolve(rows); 
+            }
+           
+        })
+    })
+}
 exports=module.exports={
     addlisting,
     getalllistings,
@@ -188,7 +201,8 @@ exports=module.exports={
     getlistingbysearch,
     getlistingbyuser,
     getlistingbyid,
-    getmywishlist
+    getmywishlist,
+    sendmsg
 }
 
 
@@ -197,7 +211,7 @@ exports=module.exports={
 // CREATE TABLE IF NOT EXISTS user (name VARCHAR(50) NOT NULL, email VARCHAR(50) NOT NULL PRIMARY KEY, college VARCHAR(100) NOT NULL, address VARCHAR(200) NOT NULL, phonenumber INTEGER NOT NULL, password VARCHAR(50) NOT NULL);
 
 // CREATE TABLE IF NOT EXISTS wishlist (bookid INTEGER NOT NULL, userid VARCHAR(50) NOT NULL, FOREIGN KEY userid REFERENCES user(email), FOREIGN KEY bookid REFERENCES listing(id));
-// CREATE TABLE IF NOT EXISTS msg(sender VARCHAR(50) NOT NULL, receiver VARCHAR(50) NOT NULL, bookid INTEGER NOT NULL, msg VARCHAR(200) NOT NULL,sendtime DATETIME NOT NULL FOREIGN KEY bookid REFERENCES listing(id),FOREIGN KEY sender REFERENCES user(email),FOREIGN KEY receiver REFERENCES listing(id));
+// CREATE TABLE IF NOT EXISTS msg(sender VARCHAR(50) NOT NULL, receiver VARCHAR(50) NOT NULL, bookid INTEGER NOT NULL, msg VARCHAR(200) NOT NULL,sendtime DATETIME NOT NULL, FOREIGN KEY bookid REFERENCES listing(id),FOREIGN KEY sender REFERENCES user(email),FOREIGN KEY receiver REFERENCES listing(id));
 
 // listing={"seller":"vj042@","book":"mono","author":"vjg","img":"imglink","price":"100","description":"desc"}
 // ALTER TABLE wishlist ADD FOREIGN KEY (userid) REFERENCES user(email);

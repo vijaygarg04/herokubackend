@@ -39,9 +39,26 @@ function getpasswordforemail(email){
     })
 }
 
+function getuser(email){
+    return new Promise(function(resolve,reject){
+        connection.query(`SELECT * FROM user WHERE email='${email}'`,function(err,rows){
+                if(err){
+                    console.log('------');
+                    
+                    reject(err);
+                }else{
+                    console.log("---------");
+                    
+                    resolve(rows);
+                } 
+            })
+    })
+}
+
 exports=module.exports={
     getpasswordforemail,
-    adduser
+    adduser,
+    getuser
 }
 
 

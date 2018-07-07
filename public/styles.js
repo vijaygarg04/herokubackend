@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body{\n    \n    background-image: url(\"https://images2.alphacoders.com/261/thumb-1920-26102.jpg\");\n    background-repeat: no-repeat, repeat;\n    background-color: #cccccc;\n    background-size: cover;\n\n    /* https://images2.alphacoders.com/261/thumb-1920-26102.jpg */\n    /* https://images6.alphacoders.com/346/346199.jpg */\n\n}"
+module.exports = "body{\n    \n    background-image: url(\"http://www.freepptbackgrounds.net/wp-content/uploads/2017/06/Flying-Student-Background-800x600.jpg\");\n    background-repeat: no-repeat, repeat;\n    background-color: #cccccc;\n    background-size: 100% 100%;\n    min-height: 100%;\n\n\n    /* https://images2.alphacoders.com/261/thumb-1920-26102.jpg */\n    /* https://images6.alphacoders.com/346/346199.jpg */\n/* http://littlereasonstosmile.me/wp-content/uploads/book-border-free-download-clip-art-on-clipart-wallpaper.jpg */\n/* https://previews.123rf.com/images/chrisdorney/chrisdorney1210/chrisdorney121000119/16033075-abstract-shot-of-a-pile-of-books-over-a-white-background-.jpg */\n/* http://www.watoceans.org/fileup/big/25/256363_books-background-wallpaper.jpg */\n}\n.gradient {\n\n    /* can be treated like a fallback */\n    background-color: #09203f;\n  \n    /* will be \"on top\", if browser supports it */\n    background-image: linear-gradient(#09203f, #537895);\n  \n    /* these will reset other properties, like background-position, but it does know what you mean */\n    background: #09203f;\n    background: linear-gradient(#09203f, #537895);\n  \n  }"
 
 /***/ }),
 
@@ -539,7 +539,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/vijaygarg/Desktop/personal stuff/webdevelopment/practise/bootcamp/BookResselerFrontEnd/frontend/src/styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! /Users/vijaygarg/Desktop/final project/BookResselerFrontEnd/frontend/src/styles.css */"./src/styles.css");
 
 
 /***/ })

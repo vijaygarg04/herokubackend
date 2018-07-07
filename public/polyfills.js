@@ -5473,7 +5473,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/vijaygarg/Desktop/personal stuff/webdevelopment/practise/bootcamp/BookResselerFrontEnd/frontend/src/polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! /Users/vijaygarg/Desktop/final project/BookResselerFrontEnd/frontend/src/polyfills.ts */"./src/polyfills.ts");
 
 
 /***/ })

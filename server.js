@@ -104,7 +104,22 @@ app.post('/addlisting',function(req,res){
 
 });
 
+app.get('/getuser',function(req,res){
+    var email=req.query.user;
+    user.getuser(email).
+    then(function(rows){
+        var data=JSON.stringify(rows);
+        console.log(data);
+        res.send(data);
 
+    }).catch(function(err){
+        console.log("error");
+
+        res.send(err);
+
+    });
+
+});
 app.get('/getalllisting',function(req,res){
     listing.getalllistings().
     then(function(rows){
@@ -349,10 +364,29 @@ app.get('/mywishlist',function(req,res){
     });
 });
 
+app.post('/sendmsg',function(req,res){
+    console.log("server called");
+    
+    var data=req.body.data;
+    console.log(data);
+    var ele=data;
+    console.log(ele);
+
+     var id=ele.id;
+     var sender=ele.sender;
+     var receiver=ele.receiver;
+     var msg=ele.msg;
+
+     listing.sendmsg(id,sender,receiver,msg).
+     then(function(){
+         res.json('Message Sent SuccessFully');
+     }).catch(function(err){
+         console.log(err);
+         res.json("Message Sent Failed");
+     });
+});
+
 
 app.listen(port,function(){
 console.log("SERVER STARTED AT 4444");
-
-
-
 });
