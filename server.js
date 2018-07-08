@@ -480,6 +480,6 @@ app.get('/getmsgsendorreceivedby',function(req,res){
 
 });
 
-app.listen(port,ip,function(){
+app.listen(process.env.PORT||4444,ip,function(){
 console.log("SERVER STARTED AT "+port+"--->"+ip);
 });
