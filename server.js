@@ -480,6 +480,11 @@ app.get('/getmsgsendorreceivedby',function(req,res){
 
 });
 
+app.get('/*',function(req,res){
+    res.sendFile(path.join(__dirname+'/public/index.html'));
+
+});
+
 app.listen(process.env.PORT||4444,ip,function(){
 console.log("SERVER STARTED AT "+port+"--->"+ip);
 });
