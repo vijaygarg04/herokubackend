@@ -730,7 +730,7 @@ module.exports = ".card-img-bottom {\n    color: #fff;\n    margin-top: 5px;\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar [parentData]='email'></app-navbar>\n<div style=\"width: 80%; margin:0 auto; min-width: 200px; margin-top: 50px\" class=\"animate\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light \" style=\"border-radius:10px \">\n<ul class=\"navbar-nav mr-auto\" >\n<li class=\"nav-item dropdown\" >\n    <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n      Filter\n    </a>\n    <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n        <div class=\"dropdown-divider\"></div>\n      <button (click)=\"sortbypricelowtohigh()\" class=\"dropdown-item\" ><i class=\"fas fa-rupee-sign\"></i> Price <i class=\"fas fa-angle-double-up\"></i></button>\n      <button (click)=\"sortbypricehightolow()\" class=\"dropdown-item\" ><i class=\"fas fa-rupee-sign\"></i> Price <i class=\"fas fa-angle-double-down\"></i></button>\n      <div class=\"dropdown-divider\"></div>\n      <button (click)=\"sortbyconditiongoodtobad()\" class=\"dropdown-item\" >Condition <i class=\"fas fa-grin-tears\"></i></button>\n      <button (click)=\"sortbyconditionbadtogood()\" class=\"dropdown-item\" >Condition <i class=\"fas fa-sad-tear\"></i></button>\n    </div>\n  </li>\n</ul>\n<form class=\"form-inline my-2 my-lg-0\">\n    <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Enter book/author\" aria-label=\"Search\" [(ngModel)]=\"srch\" name=\"srch\">\n    <button class=\"btn btn-ou tline-success my-2 my-sm-0 btn-info\" type=\"submit\" (click)=\"searchbook()\">Search</button>\n  </form>\n</nav>\n</div>\n<section>\n    <div class=\"container\">\n      \n      <div  class=\"card pos\"  style=\"margin: 20px auto;border-radius: 5px;width: 80%;\" *ngFor=\"let listing of listings;even as e;odd as o;index as i\" [class.odd]=\"o\" \n      [class.even]=\"e\" >\n        <div class=\"row\" >\n          <div class=\"col-md-7\">\n            <div class=\"card-block\" style=\"margin: 10px\">\n              <h1 class=\"card-title\" style=\"margin-top: 15px\">{{listing.book}}</h1>\n              <h3 class=\"card-text\" style=\"margin-top: 15px\">{{listing.author}}</h3>\n              <h5 class=\"card-text\" style=\"margin-top: 15px\">{{listing.description}}</h5>\n              <h2 class=\"card-text\" style=\"margin-top: 15px\"><i class=\"fas fa-rupee-sign\"></i>{{listing.price}} ( {{conditions[i]}} )</h2>\n              <h5 class=\"card-text\" style=\"margin-top: 15px\">{{listing.condition}}</h5>\n              <a (click)=\"onSelect(listing)\" class=\"btn btn-primary\" style=\"margin-top: 10px;margin-left:5px; width: 180px\"><i class=\"fas fa-info \"></i> Get More Details !!!!</a>\n            </div>\n          </div>\n          <div class=\"col-md-5\">\n            <div class=\"card-img-bottom\">\n              <img [src]=\"listing.image\" style=\"width: 100%; height: 100%;margin: auto auto\"/>          </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    \n  </section>\n  <app-footer></app-footer>"
+module.exports = "<app-navbar [parentData]='email'></app-navbar>\n<div style=\"width: 80%; margin:0 auto; min-width: 200px; margin-top: 50px\" class=\"animate\">\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light \" style=\"border-radius:10px \">\n<ul class=\"navbar-nav mr-auto\" >\n<li class=\"nav-item dropdown\" >\n    <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n      Filter\n    </a>\n    <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n        <div class=\"dropdown-divider\"></div>\n      <button (click)=\"sortbypricelowtohigh()\" class=\"dropdown-item\" ><i class=\"fas fa-rupee-sign\"></i>   Price <i class=\"fas fa-angle-double-up\"></i></button>\n      <button (click)=\"sortbypricehightolow()\" class=\"dropdown-item\" ><i class=\"fas fa-rupee-sign\"></i>  Price <i class=\"fas fa-angle-double-down\"></i></button>\n      <div class=\"dropdown-divider\"></div>\n      <button (click)=\"sortbyconditiongoodtobad()\" class=\"dropdown-item\" >Condition <i class=\"fas fa-grin-tears\"></i></button>\n      <button (click)=\"sortbyconditionbadtogood()\" class=\"dropdown-item\" >Condition <i class=\"fas fa-sad-tear\"></i></button>\n    </div>\n  </li>\n</ul>\n<form class=\"form-inline my-2 my-lg-0\">\n    <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Enter book/author\" aria-label=\"Search\" [(ngModel)]=\"srch\" name=\"srch\">\n    <button class=\"btn btn-ou tline-success my-2 my-sm-0 btn-info\" type=\"submit\" (click)=\"searchbook()\">Search</button>\n  </form>\n</nav>\n</div>\n<section>\n    <div class=\"container\">\n      \n      <div  class=\"card pos\"  style=\"margin: 20px auto;border-radius: 5px;width: 80%;\" *ngFor=\"let listing of listings;even as e;odd as o;index as i\" [class.odd]=\"o\" \n      [class.even]=\"e\" >\n        <div class=\"row\" >\n          <div class=\"col-md-7\">\n            <div class=\"card-block\" style=\"margin: 10px\">\n              <h1 class=\"card-title\" style=\"margin-top: 15px\">{{listing.book}}</h1>\n              <h3 class=\"card-text\" style=\"margin-top: 15px\">{{listing.author}}</h3>\n              <h5 class=\"card-text\" style=\"margin-top: 15px\">{{listing.description}}</h5>\n              <h2 class=\"card-text\" style=\"margin-top: 15px\"><i class=\"fas fa-rupee-sign\"></i> {{listing.price}} ( {{conditions[i]}} )</h2>\n              <h5 class=\"card-text\" style=\"margin-top: 15px\">{{listing.condition}}</h5>\n              <a (click)=\"onSelect(listing)\" class=\"btn btn-primary\" style=\"margin-top: 10px;margin-left:5px; width: 180px\"><i class=\"fas fa-info \"></i> Get More Details !!!!</a>\n            </div>\n          </div>\n          <div class=\"col-md-5\">\n            <div class=\"card-img-bottom\">\n              <img [src]=\"listing.image\" style=\"width: 100%; height: 100%;margin: auto auto\"/>          </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    \n  </section>\n  <app-footer></app-footer>"
 
 /***/ }),
 
@@ -1100,7 +1100,7 @@ module.exports = ".card-img-bottom {\n    color: #fff;\n    margin-top: 5px;\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<section>\n    <div class=\"container\">\n      \n      <div class=\"card\"  style=\"margin: 20px auto;border-radius: 5px;width: 80%;\" *ngFor=\"let listing of listings;even as e;odd as o\" [class.odd]=\"o\" \n      [class.even]=\"e\" >\n        <div class=\"row\" >\n          <div class=\"col-md-7\">\n            <div class=\"card-block\" style=\"margin: 10px\">\n              <h1 class=\"card-title\" style=\"margin-top: 15px\">{{listing.book}}</h1>\n              <h3 class=\"card-text\" style=\"margin-top: 15px\">{{listing.author}}</h3>\n              <h5 class=\"card-text\" style=\"margin-top: 15px\">{{listing.description}}</h5>\n              <h2 class=\"card-text\" style=\"margin-top: 15px\">{{listing.price}}</h2>\n              <h5 class=\"card-text\" style=\"margin-top: 15px\">{{listing.condition}}</h5>\n              <a (click)=\"onSelect(listing)\" class=\"btn btn-primary\" style=\"margin-top: 10px;margin-left:5px; width: 180px\"><i class=\"fas fa-info \"></i>See Messages</a>\n            </div>\n          </div>\n          <div class=\"col-md-5\">\n            <div class=\"card-img-bottom\">\n              <img [src]=\"listing.image\" style=\"width: 100%; height: 100%;margin: auto auto\"/></div>\n          </div>\n        </div>\n      </div>\n    </div>\n    \n  </section>\n  <app-footer></app-footer>"
+module.exports = "<app-navbar></app-navbar>\n<div  style=\"display: block;margin-top: 30px; background-color: oldlace\" *ngFor=\"let msg of msgs;\" >\n  <div style=\"background-color: lightgreen\">\n    <h3 style=\"margin: 5px 5px\">{{msg.fromorto}}  {{msg.text}} </h3>\n      <div class=\"modal-content\" style=\"display: block;margin-top: 5px;background-color: seashell;\">          \n        <h4 style=\"margin: 50px 30px\">{{msg.message}}</h4>     \n      <button  class=\"btn btn-success \" (click)=\"reply(msg)\" style=\"width: 10%;margin: 1% 50%\">Reply <i class=\"fas fa-reply\"></i></button>    \n      </div>\n  </div>\n</div>\n<div id=\"myModal\" class=\"modal\"  *ngIf=\"show\" style=\"display: block ; \">\n<div class=\"modal-content\">\n    <span class=\"close\" (click)=\"cancel()\">&times;</span>\n    <h3>Enter Your Message Here</h3>\n    <textarea rows=\"2\" cols=\"20\" [(ngModel)]=\"msgtosend\">\n      </textarea>\n      <div *ngIf=\"displayreport\"  style=\"display: block ; \">\n          <h5>{{submsg}}</h5>\n      </div>\n      <div style=\"margin-top: 10px; margin-bottom: 10px\">\n\n      <button  class=\"btn btn-danger btn-md close\" (click)=\"cancel()\" style=\"height:50px ;width: 20%;margin-left: 15%;margin-right: 15%; float: left\">Cancel <i class=\"fas fa-ban\"></i></button>\n      <button class=\"btn btn-success close\" (click)=\"sendmsg()\" style=\"height:50px ;width: 20%;margin-left: 15%;margin-right: 15%; float: left\">Send <i class=\"fas fa-step-forward\"></i></button>\n      </div>\n  </div>\n  </div>\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -1133,54 +1133,77 @@ var MymessgesComponent = /** @class */ (function () {
     function MymessgesComponent(_userservice, router) {
         this._userservice = _userservice;
         this.router = router;
-        this.listings = [
-            {
-                id: 1,
-                seller: 'vijay',
-                book: 'christ',
-                author: 'munna bhai',
-                image: 'https://s3.amazonaws.com/htw/dt-contest-entries/thumbs/73803/united-kingdom-Epic-Fantasy-book-cover-design.png',
-                price: 300,
-                cond: 4,
-                description: 'A book cover creator that saves you time. Adobe Spark is a free book cover maker that lets you craft a vision from your writing. With it, you can find a book cover template that suits your genre and style, and you can customize it until you have a sleek e-book cover thats perfect for your verbal art.'
-            },
-            {
-                id: 111,
-                seller: 'vijay',
-                book: 'christ',
-                author: 'munna bhai',
-                image: 'https://s3.amazonaws.com/htw/dt-contest-entries/thumbs/73803/united-kingdom-Epic-Fantasy-book-cover-design.png',
-                price: 300,
-                cond: 4,
-                description: 'A book cover creator that saves you time. Adobe Spark is a free book cover maker that lets you craft a vision from your writing. With it, you can find a book cover template that suits your genre and style, and you can customize it until you have a sleek e-book cover thats perfect for your verbal art.'
-            }, {
-                id: 11,
-                seller: 'vijay',
-                book: 'christ',
-                author: 'munna bhai',
-                image: 'https://s3.amazonaws.com/htw/dt-contest-entries/thumbs/73803/united-kingdom-Epic-Fantasy-book-cover-design.png',
-                price: 300,
-                cond: 4,
-                description: 'A book cover creator that saves you time. Adobe Spark is a free book cover maker that lets you craft a vision from your writing. With it, you can find a book cover template that suits your genre and style, and you can customize it until you have a sleek e-book cover thats perfect for your verbal art.'
-            },
-            {
-                id: 12,
-                seller: 'vijay',
-                book: 'christ',
-                author: 'munna bhai',
-                image: 'https://s3.amazonaws.com/htw/dt-contest-entries/thumbs/73803/united-kingdom-Epic-Fantasy-book-cover-design.png',
-                price: 300,
-                cond: 4,
-                description: 'A book cover creator that saves you time. Adobe Spark is a free book cover maker that lets you craft a vision from your writing. With it, you can find a book cover template that suits your genre and style, and you can customize it until you have a sleek e-book cover thats perfect for your verbal art.'
-            }
-        ];
+        this.messagesarray = [];
+        this.msgs = [];
+        this.myemail = "";
+        this.show = false;
+        this.msgtosend = "";
+        this.mymessage = "";
+        this.display = false;
+        this.msgreport = "";
+        this.displayreport = false;
+        this.submsg = "";
     }
     MymessgesComponent.prototype.ngOnInit = function () {
+        this.getallmessages();
+    };
+    MymessgesComponent.prototype.getallmessages = function () {
         var _this = this;
-        this._userservice.getuserlisting().subscribe(function (alllist) {
-            console.log(alllist);
-            var stringify = JSON.stringify(alllist);
-            _this.listings = JSON.parse(stringify);
+        this._userservice.getallmessages().subscribe(function (allmsgs) {
+            console.log(allmsgs);
+            var stringify = JSON.stringify(allmsgs);
+            console.log("data");
+            console.log(stringify);
+            _this.messagesarray = JSON.parse(stringify);
+            _this.myemail = _this._userservice.getemail();
+            _this.extractdata();
+        });
+    };
+    MymessgesComponent.prototype.extractdata = function () {
+        this.msgs = [];
+        for (var i = 0; i < this.messagesarray.length; i++) {
+            var currmsg = this.messagesarray[i];
+            var obj = {
+                message: "",
+                id: "",
+                fromorto: "",
+                text: ""
+            };
+            obj.message = currmsg.msg;
+            obj.id = currmsg.bookid;
+            if (currmsg.sender === this.myemail) {
+                obj.fromorto = "TO:";
+                obj.text = currmsg.receiver;
+            }
+            else {
+                obj.fromorto = "FROM:";
+                obj.text = currmsg.sender;
+            }
+            this.msgs.push(obj);
+        }
+    };
+    MymessgesComponent.prototype.reply = function (msg) {
+        console.log(JSON.stringify(msg));
+        console.log("reply" + msg);
+        this.msgtoreply = msg;
+        this.show = true;
+    };
+    MymessgesComponent.prototype.cancel = function () {
+        this.displayreport = false;
+        this.submsg = "";
+        this.show = !this.show;
+        this.msgtosend = "";
+    };
+    MymessgesComponent.prototype.sendmsg = function () {
+        var _this = this;
+        this.displayreport = true;
+        console.log(this.msgtosend);
+        this._userservice.sendmsg(this.msgtoreply.id, this.msgtoreply.text, this.msgtosend).subscribe(function (mymsg) {
+            console.log(mymsg);
+            _this.submsg = mymsg;
+            _this.mymessage = "";
+            // this.cancel();
+            _this.getallmessages();
         });
     };
     MymessgesComponent = __decorate([
@@ -1445,7 +1468,7 @@ module.exports = "body {\n    padding-top: 54px;\n    background-color: aliceblu
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<div class=\"container\" style=\"background-color: #E9F4FB; padding: 40px; margin: 20px auto;border-radius:15px \">\n\n    <h1 class=\"my-4\">{{listitem.book}}\n      <small>({{listitem.author}})</small>\n    </h1>\n\n    <div class=\"row\">\n\n      <div class=\"col-md-8\">\n        <img class=\"img-fluid\" [src]=\"listitem.image\" alt=\"\">\n      </div>\n\n      <div class=\"col-md-4\">\n        <h6 class=\"my-3\">{{listitem.description}}</h6>\n        <h4 class=\"my-4\">{{sellerinfo.name}}</h4>\n        <h5><i class=\"fas fa-mobile-alt fa-spin\"></i>   ({{sellerinfo.phonenumber}})</h5>\n        <h2 class=\"my-3\"><i class=\"fas fa-rupee-sign\"></i> {{listitem.price}} ({{condition}})</h2>\n        \n        <button class=\"btn btn-primary btn-sm\" style=\"margin: 5px\" (click)=\"addtowishlist()\" ><i class=\"fas fa-heart fa-spin\" ></i>  Add To WishList</button>\n        <button class=\"btn btn-primary  btn-sm\" style=\"margin: 5px\" (click)=\"chat()\"><i class=\"fas fa-comment \" ></i>  Chat With Seller</button>\n      </div>\n      \n    </div>\n  </div>\n  <div>\n  <div id=\"myModal\" class=\"modal\"  *ngIf=\"show\">\n\n    <!-- Modal content -->\n    <div class=\"modal-content\">\n      <span class=\"close\" (click)=\"cancel()\">&times;</span>\n      <h3>Enter Your Message Here</h3>\n      <textarea rows=\"2\" cols=\"20\" [(ngModel)]=\"msgtosend\">\n        </textarea>\n        <div *ngIf=\"displayreport\"  style=\"display: block ; \">\n            <h5>{{submsg}}</h5>\n        </div>\n        <div style=\"margin-top: 10px\">\n\n        <button  class=\"btn btn-danger btn-md close\" (click)=\"cancel()\" style=\"height:50px ;width: 20%;margin-left: 15%;margin-right: 15%; float: left\">Cancel <i class=\"fas fa-ban\"></i></button>\n        <button class=\"btn btn-success close\" (click)=\"sendmsg()\" style=\"height:50px ;width: 20%;margin-left: 15%;margin-right: 15%; float: left\">Send <i class=\"fas fa-step-forward\"></i></button>\n        </div>\n    </div>\n  \n  </div>\n  <div class=\"modal\" *ngIf=\"display\"  style=\"display: block ; \">\n      <div class=\"modal-dialog modal-dialog-centered\" >\n        <div class=\"modal-content gradient\">\n          <div class=\"modal-header\">\n            <h5 class=\"modal-title\" >Information for you</h5>\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"onclose()\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body\">\n            {{mymessage}}\n          </div>\n          \n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" (click)=\"onclose()\">Close</button>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  <app-footer></app-footer>\n"
+module.exports = "<app-navbar></app-navbar>\n<div class=\"container\" style=\"background-color: #E9F4FB; padding: 40px; margin: 20px auto;border-radius:15px \">\n\n    <h1 class=\"my-4\">{{listitem.book}}\n      <small>({{listitem.author}})</small>\n    </h1>\n\n    <div class=\"row\">\n\n      <div class=\"col-md-8\">\n        <img class=\"img-fluid\" [src]=\"listitem.image\" alt=\"\">\n      </div>\n\n      <div class=\"col-md-4\">\n        <h6 class=\"my-3\">{{listitem.description}}</h6>\n        <h4 class=\"my-4\">{{sellerinfo.name}}</h4>\n        <h5><i class=\"fas fa-mobile-alt fa-spin\"></i>   ({{sellerinfo.phonenumber}})</h5>\n        <h2 class=\"my-3\"><i class=\"fas fa-rupee-sign\"></i> {{listitem.price}} ({{condition}})</h2>\n        \n        <button class=\"btn btn-primary btn-sm\" style=\"margin: 5px\" (click)=\"addtowishlist()\" ><i class=\"fas fa-heart fa-spin\" ></i>  Add To WishList</button>\n        <button class=\"btn btn-primary  btn-sm\" style=\"margin: 5px\" (click)=\"chat()\"><i class=\"fas fa-comment \" ></i>  Chat With Seller</button>\n      </div>\n      \n    </div>\n  </div>\n  <div>\n  <div id=\"myModal\" class=\"modal\"  *ngIf=\"show\">\n\n    <!-- Modal content -->\n    <div class=\"modal-content\">\n      <span class=\"close\" (click)=\"cancel()\">&times;</span>\n      <h3>Enter Your Message Here</h3>\n      <textarea rows=\"2\" cols=\"20\" [(ngModel)]=\"msgtosend\">\n        </textarea>\n        <div *ngIf=\"displayreport\"  style=\"display: block ; \">\n            <h5>{{submsg}}</h5>\n        </div>\n        <div style=\"margin-top: 10px;margin-bottom: 10px\">\n\n        <button  class=\"btn btn-danger btn-md close\" (click)=\"cancel()\" style=\"height:50px ;width: 20%;margin-left: 15%;margin-right: 15%; float: left\">Cancel <i class=\"fas fa-ban\"></i></button>\n        <button class=\"btn btn-success close\" (click)=\"sendmsg()\" style=\"height:50px ;width: 20%;margin-left: 15%;margin-right: 15%; float: left\">Send <i class=\"fas fa-step-forward\"></i></button>\n        </div>\n    </div>\n  \n  </div>\n  <div class=\"modal\" *ngIf=\"display\"  style=\"display: block ; \">\n      <div class=\"modal-dialog modal-dialog-centered\" >\n        <div class=\"modal-content gradient\">\n          <div class=\"modal-header\">\n            <h5 class=\"modal-title\" >Information for you</h5>\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"onclose()\">\n              <span aria-hidden=\"true\">&times;</span>\n            </button>\n          </div>\n          <div class=\"modal-body\">\n            {{mymessage}}\n          </div>\n          \n          <div class=\"modal-footer\">\n            <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" (click)=\"onclose()\">Close</button>\n          </div>\n        </div>\n      </div>\n    </div>\n\n  <app-footer></app-footer>\n"
 
 /***/ }),
 
@@ -1723,6 +1746,11 @@ var UserService = /** @class */ (function () {
     UserService.prototype.getuserbyid = function (seller) {
         var userid = seller;
         var myurl = this.url + "/getuser?user=" + userid;
+        return this.http.get(myurl);
+    };
+    UserService.prototype.getallmessages = function () {
+        var userid = this.getemail();
+        var myurl = this.url + "/getmsg?user=" + userid;
         return this.http.get(myurl);
     };
     UserService = __decorate([

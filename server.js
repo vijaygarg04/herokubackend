@@ -5,7 +5,6 @@ const port =process.env.PORT||4444;
 const listing=require('./mysql/listings/listings');
 const user=require ('./mysql/users/users');
 const wishlist=require('./mysql/wishlist/wishlist');
-const msg=require('./mysql/msg/msg');
 
 const bodyparser=require('body-parser');
 app.use(bodyparser.urlencoded({
@@ -295,8 +294,13 @@ app.get('/removebook',function(req,res){
     console.log(req.query);
 
     var id=req.query.id;
+    
+    listing.removemsg(id).
+    then(function(msg){
 
-    listing.removelistingbyid(id).
+        wishlist.removefromwish(id).
+        then(function(msg){
+            listing.removelistingbyid(id).
     then(function(msg){
         res.json("Successfully removed the advertisement for this book");
     }).catch(function(err){
@@ -305,6 +309,20 @@ app.get('/removebook',function(req,res){
         res.json(err);
 
     });
+
+        }).catch(function(err){
+            console.log("Some Server Error occured");
+    
+            res.json(err);
+    
+        });
+
+    }).catch(function(err){
+
+        res.json(err);
+    });
+
+    
 
 });
 app.get('/getbook',function(req,res){
@@ -386,6 +404,24 @@ app.post('/sendmsg',function(req,res){
      });
 });
 
+app.get('/getmsg',function(req,res){
+    var email=req.query.user;
+    console.log(email);
+    
+    listing.getmsgs(email).
+    then(function(rows){
+        var data=JSON.stringify(rows);
+        console.log(data);
+        res.send(data);
+
+    }).catch(function(err){
+        console.log("error");
+
+        res.send(err);
+
+    });
+
+});
 
 app.listen(port,function(){
 console.log("SERVER STARTED AT 4444");

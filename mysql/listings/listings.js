@@ -2,10 +2,10 @@ const mysql=require('mysql2');
 
 const connection =mysql.createConnection(
     {
-        host:'localhost',
-        database:'bookreseller',
-        user:'root',
-        password:'12345678',
+        host:'us-cdbr-iron-east-04.cleardb.net',
+        database:'heroku_46856bf9dc93c7e',
+        user:'b4a1393db7b5a5',
+        password:'17f1c2e8',
         insecureAuth:true
     }
 )
@@ -189,6 +189,36 @@ function sendmsg(id,sender,receiver,msg){
         })
     })
 }
+
+function removemsg(id){
+    return new Promise(function(resolve,reject){
+        connection.query(`DELETE FROM msg WHERE bookid=${id}`,
+        function(err,rows,cols){
+            if(err){
+                reject(err);
+            }else{
+                resolve(rows); 
+            }
+           
+        })
+    })
+}
+
+function getmsgs(id){
+    return new Promise(function(resolve,reject){
+        connection.query(`SELECT * FROM msg WHERE sender='${id}' OR receiver='${id}'`,
+        function(err,rows,cols){
+            if(err){
+                reject(err);
+            }else{
+                resolve(rows); 
+            }
+           
+        })
+    })
+}
+
+
 exports=module.exports={
     addlisting,
     getalllistings,
@@ -202,7 +232,9 @@ exports=module.exports={
     getlistingbyuser,
     getlistingbyid,
     getmywishlist,
-    sendmsg
+    sendmsg,
+    removemsg,
+    getmsgs
 }
 
 
@@ -219,3 +251,12 @@ exports=module.exports={
 // ALTER TABLE msg ADD FOREIGN KEY (sender) REFERENCES user(email);
 // ALTER TABLE msg ADD FOREIGN KEY (receiver) REFERENCES user(email);
 // ALTER TABLE msg ADD FOREIGN KEY (bookid) REFERENCES listing(id);
+
+
+
+
+// Details
+// Username:	b4a1393db7b5a5
+// Password:	17f1c2e8
+// databasename: heroku_46856bf9dc93c7e
+// host: us-cdbr-iron-east-04.cleardb.net

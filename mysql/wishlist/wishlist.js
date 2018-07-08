@@ -1,14 +1,25 @@
 const mysql=require('mysql2');
 
+
 const connection =mysql.createConnection(
     {
-        host:'localhost',
-        database:'bookreseller',
-        user:'root',
-        password:'12345678',
+        host:'us-cdbr-iron-east-04.cleardb.net',
+        database:'heroku_46856bf9dc93c7e',
+        user:'b4a1393db7b5a5',
+        password:'17f1c2e8',
         insecureAuth:true
     }
 )
+
+// const connection =mysql.createConnection(
+//     {
+//         host:'localhost',
+//         database:'bookreseller',
+//         user:'root',
+//         password:'12345678',
+//         insecureAuth:true
+//     }
+// )
 function addinwishlist(bookid,userid){
     return new Promise(function(resolve,reject){
         console.log("three");
@@ -42,7 +53,21 @@ function deletefromwishlist(bookid,userid){
         })
     })
 }
+function removefromwish(bookid){
+    return new Promise(function(resolve,reject){
+        connection.query(`DELETE FROM wishlist WHERE bookid=${bookid}`,
+    function(err,rows){
+        if(err){
+            reject(err);
+        }else{
+            resolve(rows); 
+        }
+       
+        })
+    })
+}
 exports=module.exports={
     addinwishlist,
-    deletefromwishlist
+    deletefromwishlist,
+    removefromwish
 }
