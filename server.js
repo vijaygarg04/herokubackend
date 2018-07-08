@@ -9,10 +9,7 @@ const listing=require('./mysql/listings/listings');
 const user=require ('./mysql/users/users');
 const wishlist=require('./mysql/wishlist/wishlist');
 
-const bodyparser=require('body-parser');
-app.use(bodyparser.urlencoded({
-    extended:true
-}));
+
 
 app.use( express.static('public') ) ;  
 app.use(bodyParser.json());
