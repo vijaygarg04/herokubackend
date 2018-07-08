@@ -1,19 +1,15 @@
-var express=require('express');
-var app=express();
-const port =process.env.PORT||4444;
-const ip=process.env.IP||'127.0.0.1';
+const express=require('express');
+const app=express();
 var path = require('path')
 const bodyParser = require('body-parser');
-
-const listing=require('./mysql/listings/listings');
-const user=require ('./mysql/users/users');
-const wishlist=require('./mysql/wishlist/wishlist');
-
-
 
 app.use( express.static('public') ) ;  
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}) );
+
+const listing=require('./mysql/listings/listings');
+const user=require ('./mysql/users/users');
+const wishlist=require('./mysql/wishlist/wishlist');
 
 
 
@@ -480,11 +476,9 @@ app.get('/getmsgsendorreceivedby',function(req,res){
 
 });
 
-app.get('/*',function(req,res){
-    res.sendFile(path.join(__dirname+'/public/index.html'));
+let port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 3000
+let ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
 
-});
-
-app.listen(process.env.PORT||4444,ip,function(){
+app.listen(port,ip,function(){
 console.log("SERVER STARTED AT "+port+"--->"+ip);
 });
