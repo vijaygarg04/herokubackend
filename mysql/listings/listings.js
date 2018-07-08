@@ -2,11 +2,10 @@ const mysql=require('mysql2');
 
 const connection =mysql.createConnection(
     {
-        host:'localhost',
-        database:'bookreseller',
-        user:'root',
-        password:'12345678',
-        insecureAuth:true
+        host:'sql12.freemysqlhosting.net',
+        database:'sql12246628',
+        user:'sql12246628',
+        password:'81Ng2itMjq'
     }
 )
 
@@ -298,7 +297,7 @@ exports=module.exports={
 
 // CREATE TABLE IF NOT EXISTS wishlist (bookid INTEGER NOT NULL, userid VARCHAR(50) NOT NULL);
 // CREATE TABLE IF NOT EXISTS msg(sender VARCHAR(50) NOT NULL, receiver VARCHAR(50) NOT NULL, bookid INTEGER NOT NULL, msg VARCHAR(200) NOT NULL);
-
+// ALTER TABLE listing ADD FOREIGN KEY (seller) REFERENCES users(email);
 // ALTER TABLE wishlist ADD FOREIGN KEY (userid) REFERENCES user(email);
 // ALTER TABLE wishlist ADD FOREIGN KEY (bookid) REFERENCES listing(id);
 // ALTER TABLE msg ADD FOREIGN KEY (sender) REFERENCES user(email);

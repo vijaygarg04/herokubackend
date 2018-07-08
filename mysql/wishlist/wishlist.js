@@ -13,13 +13,22 @@ const mysql=require('mysql2');
 
 const connection =mysql.createConnection(
     {
-        host:'localhost',
-        database:'bookreseller',
-        user:'root',
-        password:'12345678',
-        insecureAuth:true
+        host:'sql12.freemysqlhosting.net',
+        database:'sql12246628',
+        user:'sql12246628',
+        password:'81Ng2itMjq'
     }
 )
+
+// const connection =mysql.createConnection(
+//     {
+//         host:'localhost',
+//         database:'bookreseller',
+//         user:'root',
+//         password:'12345678',
+//         insecureAuth:true
+//     }
+// )
 function addinwishlist(bookid,userid){
     return new Promise(function(resolve,reject){
         console.log("three");

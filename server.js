@@ -1,6 +1,7 @@
 var express=require('express');
 var app=express();
 const port =process.env.PORT||4444;
+const ip=process.env.IP||'127.0.0.1';
 
 const listing=require('./mysql/listings/listings');
 const user=require ('./mysql/users/users');
@@ -479,6 +480,6 @@ app.get('/getmsgsendorreceivedby',function(req,res){
 
 });
 
-app.listen(port,function(){
+app.listen(port,ip,function(){
 console.log("SERVER STARTED AT 4444");
 });
