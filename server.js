@@ -36,7 +36,7 @@ app.post('/adduser',function(req,res){
          res.json('successfully added new user');
      }).catch(function(err){
          console.log(err);
-         res.json("error in adding new user. Please Try Again Later!!!");
+         res.json("Error in adding new user. Please Try Again Later!!! Or Try With Different Mail Id");
 
      });
 
@@ -409,6 +409,62 @@ app.get('/getmsg',function(req,res){
     console.log(email);
     
     listing.getmsgs(email).
+    then(function(rows){
+        var data=JSON.stringify(rows);
+        console.log(data);
+        res.send(data);
+
+    }).catch(function(err){
+        console.log("error");
+
+        res.send(err);
+
+    });
+
+});
+app.get('/getmsgsendbyme',function(req,res){
+    var email=req.query.user;
+    console.log(email);
+    
+    listing.getmsgssendbyme(email).
+    then(function(rows){
+        var data=JSON.stringify(rows);
+        console.log(data);
+        res.send(data);
+
+    }).catch(function(err){
+        console.log("error");
+
+        res.send(err);
+
+    });
+
+});
+app.get('/getmsgreceivedbyme',function(req,res){
+    var email=req.query.user;
+    console.log(email);
+    
+    listing.getmsgsreceivedbyme(email).
+    then(function(rows){
+        var data=JSON.stringify(rows);
+        console.log(data);
+        res.send(data);
+
+    }).catch(function(err){
+        console.log("error");
+
+        res.send(err);
+
+    });
+
+});
+app.get('/getmsgsendorreceivedby',function(req,res){
+    var email=req.query.user;
+    var email2=req.query.other;
+    console.log(email+"---"+email2);
+
+    
+    listing.getmsgssendorreceivedby(email,email2).
     then(function(rows){
         var data=JSON.stringify(rows);
         console.log(data);

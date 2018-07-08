@@ -104,7 +104,7 @@ module.exports = "\n/* BASIC */\ni{\n    margin-right: 8px;\n  }\nhtml {\n      
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n\n<div class=\"wrapper fadeInDown\">\n    <div id=\"formContent\">\n      <h1 class=\"fadeIn fourth\">Add New Item in List Here</h1>\n      <form>\n       <i class=\"fas fa-book-open fa-2x\"></i><input type=\"text\" [(ngModel)]=\"book\" id=\"book\" class=\"fadeIn second\" name=\"book\" placeholder=\"book Name\" >\n       <p></p>\n       <i class=\"fas fa-edit fa-2x\"></i><input type=\"text\" [(ngModel)]=\"author\" id=\"author\" class=\"fadeIn third\" name=\"author\" placeholder=\"Author Name\" required >\n       <p></p>\n       <i class=\"fas fa-file-image fa-2x\"></i><input type=\"text\" id=\"imgurl\" [(ngModel)]=\"imgurl\" class=\"fadeIn second\" name=\"imgurl\" placeholder=\"Image URL Here\" required >\n       <p></p>\n       <i class=\"fas fa-rupee-sign fa-2x\"></i><input type=\"text\" id=\"price\" [(ngModel)]=\"price\" class=\"fadeIn third\" name=\"price\" placeholder=\" Item Price\" required >\n       <p></p>\n       <select [(ngModel)]=\"conditionselect\" name=\"selct\" style=\"width: 400px;\">\n          <option *ngFor=\"let condition of conditions\" [ngValue]=\"condition\">{{condition}}</option>\n        </select>\n        <p></p>\n       <input type=\"submit\" class=\"fadeIn fourth\"  (click)=\"submititem()\" value=\"Submit Item\" >\n      </form>    \n      <div id=\"formFooter\">\n        <a class=\"underlineHover\" routerLink=\"/viewlist\">View My All List Items</a>\n      </div>\n    </div>\n  </div>\n\n\n  \n  <div class=\"modal\" *ngIf=\"display\"  style=\"display: block ; \">\n    <div class=\"modal-dialog modal-dialog-centered\" >\n      <div class=\"modal-content gradient\">\n        <div class=\"modal-header\">\n          <h5 class=\"modal-title\" >Information for you</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"onclose()\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n          {{mymessage}}\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" (click)=\"onclose()\">Close</button>\n        </div>\n      </div>\n    </div>\n  </div>\n  <app-footer></app-footer>"
+module.exports = "<app-navbar></app-navbar>\n\n<div class=\"wrapper fadeInDown\">\n    <div id=\"formContent\">\n      <h1 class=\"fadeIn fourth\">Add New Item in List Here</h1>\n      <form>\n       <i class=\"fas fa-book-open fa-2x\"></i><input type=\"text\" [(ngModel)]=\"book\" id=\"book\" class=\"fadeIn second\" name=\"book\" placeholder=\"book Name\" >\n       <p></p>\n       <i class=\"fas fa-edit fa-2x\"></i><input type=\"text\" [(ngModel)]=\"author\" id=\"author\" class=\"fadeIn third\" name=\"author\" placeholder=\"Author Name\" required >\n       <p></p>\n       <i class=\"fas fa-file-image fa-2x\"></i><input type=\"text\" id=\"imgurl\" [(ngModel)]=\"imgurl\" class=\"fadeIn second\" name=\"imgurl\" placeholder=\"Image URL Here\" required >\n       <p></p>\n       <i class=\"fas fa-rupee-sign fa-2x\"></i><input type=\"number\" id=\"price\" [(ngModel)]=\"price\" class=\"fadeIn third\" name=\"price\" placeholder=\" Item Price\" required >\n       <p></p>\n       <select [(ngModel)]=\"conditionselect\" name=\"selct\" style=\"width: 400px;\">\n          <option *ngFor=\"let condition of conditions\" [ngValue]=\"condition\">{{condition}}</option>\n        </select>\n        <p></p>\n       <input type=\"submit\" class=\"fadeIn fourth\"  (click)=\"submititem()\" value=\"Submit Item\" >\n      </form>    \n      <div id=\"formFooter\">\n        <a class=\"underlineHover\" routerLink=\"/viewlist\">View My All List Items</a>\n      </div>\n    </div>\n  </div>\n\n\n  \n  <div class=\"modal\" *ngIf=\"display\"  style=\"display: block ; \">\n    <div class=\"modal-dialog modal-dialog-centered\" >\n      <div class=\"modal-content gradient\">\n        <div class=\"modal-header\">\n          <h5 class=\"modal-title\" >Information for you</h5>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" (click)=\"onclose()\">\n            <span aria-hidden=\"true\">&times;</span>\n          </button>\n        </div>\n        <div class=\"modal-body\">\n          {{mymessage}}\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" (click)=\"onclose()\">Close</button>\n        </div>\n      </div>\n    </div>\n  </div>\n  <app-footer></app-footer>"
 
 /***/ }),
 
@@ -173,8 +173,44 @@ var AddlistingComponent = /** @class */ (function () {
             img: this.imgurl,
             price: this.price,
             condition: conditionnumber,
-            description: 'Good morning from France! I have finally made '
+            description: "This book was about a bird who didn't yet know how to fly.The bird has to decide if it will try to fly, but it was not sure if it wants to. The bird thought, \"If I never \n      forever endeavor\" then I won't ever learn. On one wing, he worries he might fail and on the other wing he thinks of how he may succeed. He worries that if he tries, he may get lost in \n      the world. That makes him want to stay in his nest where he's safe.I think this book would help other children to learn that trying new things can be scary, but sometimes when we try,\n       we can find things that make us happy too. And this book will help others know that mistakes are okay and part of learning.\n      My favorite part is that the bird tried and learned that she could fly. I also liked that I read this book because it gave me a chance to talk to mom about making mistakes and how I don't \n      like making them. Then I learned they are good and part of learning. \n      Boys and girls who are 3 to 8 years old would like this book because it teaches about trying a new thing and how it's important to get past being scared so you can learn new things.\n      I give the book 5 stars since I think it's important for other children to learn about courage. "
         };
+        var error = '';
+        var re = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
+        var urltest = re.test(this.imgurl);
+        if (this.book.length === 0) {
+            error += "Enter Book Name";
+            this.mymessage = error;
+            this.display = true;
+            return;
+        }
+        if (this.author.length === 0) {
+            error += "Enter Author Name";
+            this.mymessage = error;
+            this.display = true;
+            return;
+        }
+        if (urltest === false) {
+            error += "URL is Invalid";
+            this.mymessage = error;
+            this.display = true;
+            return;
+        }
+        var rate = this.price + '';
+        console.log(rate.length);
+        console.log(this.price);
+        if (rate === 'undefined') {
+            error += "Enter Book Price";
+            this.mymessage = error;
+            this.display = true;
+            return;
+        }
+        if (conditionnumber === -1) {
+            error += "Select Book Condition";
+            this.mymessage = error;
+            this.display = true;
+            return;
+        }
         this._userservice.addnewbookitem(list).subscribe(function (mymsg) {
             console.log(mymsg);
             _this.mymessage = mymsg;
@@ -763,47 +799,7 @@ var ListingComponent = /** @class */ (function () {
     function ListingComponent(_userservice, router) {
         this._userservice = _userservice;
         this.router = router;
-        this.listings = [
-            {
-                id: 1,
-                seller: 'vijay',
-                book: 'christ',
-                author: 'munna bhai',
-                image: 'https://s3.amazonaws.com/htw/dt-contest-entries/thumbs/73803/united-kingdom-Epic-Fantasy-book-cover-design.png',
-                price: 300,
-                cond: 4,
-                description: 'A book cover creator that saves you time. Adobe Spark is a free book cover maker that lets you craft a vision from your writing. With it, you can find a book cover template that suits your genre and style, and you can customize it until you have a sleek e-book cover thats perfect for your verbal art.'
-            },
-            {
-                id: 111,
-                seller: 'vijay',
-                book: 'christ',
-                author: 'munna bhai',
-                image: 'https://s3.amazonaws.com/htw/dt-contest-entries/thumbs/73803/united-kingdom-Epic-Fantasy-book-cover-design.png',
-                price: 300,
-                cond: 4,
-                description: 'A book cover creator that saves you time. Adobe Spark is a free book cover maker that lets you craft a vision from your writing. With it, you can find a book cover template that suits your genre and style, and you can customize it until you have a sleek e-book cover thats perfect for your verbal art.'
-            }, {
-                id: 11,
-                seller: 'vijay',
-                book: 'christ',
-                author: 'munna bhai',
-                image: 'https://s3.amazonaws.com/htw/dt-contest-entries/thumbs/73803/united-kingdom-Epic-Fantasy-book-cover-design.png',
-                price: 300,
-                cond: 4,
-                description: 'A book cover creator that saves you time. Adobe Spark is a free book cover maker that lets you craft a vision from your writing. With it, you can find a book cover template that suits your genre and style, and you can customize it until you have a sleek e-book cover thats perfect for your verbal art.'
-            },
-            {
-                id: 12,
-                seller: 'vijay',
-                book: 'christ',
-                author: 'munna bhai',
-                image: 'https://s3.amazonaws.com/htw/dt-contest-entries/thumbs/73803/united-kingdom-Epic-Fantasy-book-cover-design.png',
-                price: 300,
-                cond: 4,
-                description: 'A book cover creator that saves you time. Adobe Spark is a free book cover maker that lets you craft a vision from your writing. With it, you can find a book cover template that suits your genre and style, and you can customize it until you have a sleek e-book cover thats perfect for your verbal art.'
-            }
-        ];
+        this.listings = [];
         this.srch = "";
         this.conditions = [];
     }
@@ -958,14 +954,36 @@ var LoginComponent = /** @class */ (function () {
     };
     LoginComponent.prototype.verifyaccount = function () {
         var _this = this;
-        var user = {
-            email: this.email,
-            password: this.password
-        };
-        this._userservice.verifyuser(user).subscribe(function (user) {
-            _this.mymessage = user;
-            _this.display = true;
-        });
+        var error = '';
+        var regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+        var serchfind = regexp.test(this.email);
+        if (serchfind === false) {
+            error = error + "Email format Invalid";
+            this.display = true;
+            this.mymessage = error;
+            return;
+        }
+        if (this.password.length === 0) {
+            error += 'Password Cannot Be Blank';
+            this.display = true;
+            this.mymessage = error;
+            return;
+        }
+        if (error.length > 0) {
+            this.display = true;
+            this.mymessage = error;
+            return;
+        }
+        else {
+            var user = {
+                email: this.email,
+                password: this.password
+            };
+            this._userservice.verifyuser(user).subscribe(function (user) {
+                _this.mymessage = user;
+                _this.display = true;
+            });
+        }
     };
     LoginComponent.prototype.onclose = function () {
         this.display = false;
@@ -1089,7 +1107,7 @@ var MylistComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card-img-bottom {\n    color: #fff;\n    margin-top: 5px;\n    width: 95%;\n    height: 95%;\n  }\n  .odd{\n    /* for chrome and safari*/\n    -webkit-animation-duration: 1s;\n    -webkit-animation-name: slideout;\n  \n    /*for firefox*/\n    -moz-animation-duration: 1s;\n    -moz-animation-name: slideout;\n  \n      /* for opera*/\n    -o-animation-duration: 1s;\n    -o-animation-name: slideout;\n  \n      /* Standard syntax*/\n    animation-duration: 1s;\n    animation-name: slideout;\n  }\n  @-webkit-keyframes slideout {\n    from {\n        margin-left: -100%;\n        width: 300%;\n    }\n  \n    to {\n        margin-left: 0%;\n        width: 80%;\n    }\n  }\n  @keyframes slideout {\n    from {\n        margin-left: -100%;\n        width: 300%;\n    }\n  \n    to {\n        margin-right: 0%;\n        width: 80%;\n    }\n  }\n  .even{\n    /* for chrome and safari*/\n    -webkit-animation-duration: 1s;\n    -webkit-animation-name: slidein;\n\n    /*for firefox*/\n    -moz-animation-duration: 1s;\n    -moz-animation-name: slidein;\n\n      /* for opera*/\n    -o-animation-duration: 1s;\n    -o-animation-name: slidein;\n\n      /* Standard syntax*/\n    animation-duration: 1s;\n    animation-name: slidein;\n}\n  @-webkit-keyframes slidein {\n    from {\n        margin-left: 100%;\n        width: 300%;\n    }\n\n    to {\n        margin-left: 0%;\n        width: 80%;\n    }\n}\n  @keyframes slidein {\n    from {\n        margin-left: 100%;\n        width: 300%;\n    }\n\n    to {\n        margin-left: 0%;\n        width: 80%;\n    }\n}\n"
+module.exports = ".card-img-bottom {\n    color: #fff;\n    margin-top: 5px;\n    width: 95%;\n    height: 95%;\n  }\n  .odd{\n    /* for chrome and safari*/\n    -webkit-animation-duration: 1s;\n    -webkit-animation-name: slideout;\n  \n    /*for firefox*/\n    -moz-animation-duration: 1s;\n    -moz-animation-name: slideout;\n  \n      /* for opera*/\n    -o-animation-duration: 1s;\n    -o-animation-name: slideout;\n  \n      /* Standard syntax*/\n    animation-duration: 1s;\n    animation-name: slideout;\n  }\n  @-webkit-keyframes slideout {\n    from {\n        margin-left: -100%;\n        width: 300%;\n    }\n  \n    to {\n        margin-left: 0%;\n        width: 80%;\n    }\n  }\n  @keyframes slideout {\n    from {\n        margin-left: -100%;\n        width: 300%;\n    }\n  \n    to {\n        margin-right: 0%;\n        width: 80%;\n    }\n  }\n  .even{\n    /* for chrome and safari*/\n    -webkit-animation-duration: 1s;\n    -webkit-animation-name: slidein;\n\n    /*for firefox*/\n    -moz-animation-duration: 1s;\n    -moz-animation-name: slidein;\n\n      /* for opera*/\n    -o-animation-duration: 1s;\n    -o-animation-name: slidein;\n\n      /* Standard syntax*/\n    animation-duration: 1s;\n    animation-name: slidein;\n}\n  @-webkit-keyframes slidein {\n    from {\n        margin-left: 100%;\n        width: 300%;\n    }\n\n    to {\n        margin-left: 0%;\n        width: 80%;\n    }\n}\n  @keyframes slidein {\n    from {\n        margin-left: 100%;\n        width: 300%;\n    }\n\n    to {\n        margin-left: 0%;\n        width: 80%;\n    }\n}\n  .animate{\n    -webkit-animation: NAME-YOUR-ANIMATION 3s;\n    animation: NAME-YOUR-ANIMATION 3s;\n    opacity: 1;\n}\n  @keyframes NAME-YOUR-ANIMATION {\n    0% {\n        opacity: 0;\n    }\n    12%{\n        opacity: 0.12;\n    }\n    25% {\n        opacity: 0.25;\n    }\n    37%{\n        opacity: 0.37;\n    }\n    50% {\n        opacity: 0.5;\n    }\n    62%{\n        opacity: 0.62;\n    }\n    75% {\n        opacity: 0.75;\n    }\n    87%{\n        opacity: 0.87;\n    }\n    100% {\n        opacity: 1;\n    }\n}\n  @-webkit-keyframes NAME-YOUR-ANIMATION {\n    0% {\n        opacity: 0;\n    }\n    12%{\n        opacity: 0.12;\n    }\n    25%{\n        opacity: 0.25;\n    }\n    37%{\n        opacity: 0.37;\n    }\n    50% {\n        opacity: 0.50;\n    }\n    62%{\n        opacity: 0.62;\n    }\n    75% {\n        opacity: 0.75;\n    }\n    87%{\n        opacity: 0.87;\n    }\n    100% {\n        opacity: 1;\n    }\n}\n  @keyframes NAME-YOUR-ANIMATION {\n    0% {\n        opacity: 0;\n    }\n    12%{\n        opacity: 0.12;\n    }\n    25%{\n        opacity: 0.25;\n    }\n    37%{\n        opacity: 0.37;\n    }\n    50% {\n        opacity: 0.50;\n    }\n    62%{\n        opacity: 0.62;\n    }\n    75% {\n        opacity: 0.75;\n    }\n    87%{\n        opacity: 0.87;\n    }\n    100% {\n        opacity: 1;\n    }\n}\n"
 
 /***/ }),
 
@@ -1100,7 +1118,7 @@ module.exports = ".card-img-bottom {\n    color: #fff;\n    margin-top: 5px;\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<div  style=\"display: block;margin-top: 30px; background-color: oldlace\" *ngFor=\"let msg of msgs;\" >\n  <div style=\"background-color: lightgreen\">\n    <h3 style=\"margin: 5px 5px\">{{msg.fromorto}}  {{msg.text}} </h3>\n      <div class=\"modal-content\" style=\"display: block;margin-top: 5px;background-color: seashell;\">          \n        <h4 style=\"margin: 50px 30px\">{{msg.message}}</h4>     \n      <button  class=\"btn btn-success \" (click)=\"reply(msg)\" style=\"width: 10%;margin: 1% 50%\">Reply <i class=\"fas fa-reply\"></i></button>    \n      </div>\n  </div>\n</div>\n<div id=\"myModal\" class=\"modal\"  *ngIf=\"show\" style=\"display: block ; \">\n<div class=\"modal-content\">\n    <span class=\"close\" (click)=\"cancel()\">&times;</span>\n    <h3>Enter Your Message Here</h3>\n    <textarea rows=\"2\" cols=\"20\" [(ngModel)]=\"msgtosend\">\n      </textarea>\n      <div *ngIf=\"displayreport\"  style=\"display: block ; \">\n          <h5>{{submsg}}</h5>\n      </div>\n      <div style=\"margin-top: 10px; margin-bottom: 10px\">\n\n      <button  class=\"btn btn-danger btn-md close\" (click)=\"cancel()\" style=\"height:50px ;width: 20%;margin-left: 15%;margin-right: 15%; float: left\">Cancel <i class=\"fas fa-ban\"></i></button>\n      <button class=\"btn btn-success close\" (click)=\"sendmsg()\" style=\"height:50px ;width: 20%;margin-left: 15%;margin-right: 15%; float: left\">Send <i class=\"fas fa-step-forward\"></i></button>\n      </div>\n  </div>\n  </div>\n<app-footer></app-footer>"
+module.exports = "<app-navbar></app-navbar>\n<div style=\"width: 80%; margin:0 auto; min-width: 200px; margin-top: 50px\" class=\"animate\">\n    <nav class=\"navbar navbar-expand-lg navbar-light bg-light \" style=\"border-radius:10px \">\n  <ul class=\"navbar-nav mr-auto\" >\n  <li class=\"nav-item dropdown\" >\n      <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n        Filter\n      </a>\n      <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n          <div class=\"dropdown-divider\"></div>\n        <button (click)=\"getsentby()\" class=\"dropdown-item\" > Sent</button>\n        <button (click)=\"getreceivedby()\" class=\"dropdown-item\" >Received</button>\n        </div>\n    </li>\n  </ul>\n  <form class=\"form-inline my-2 my-lg-0\">\n      <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"sender email id to search for\" aria-label=\"Search\" [(ngModel)]=\"srch\" name=\"srch\">\n      <button class=\"btn btn-ou tline-success my-2 my-sm-0 btn-info\" type=\"submit\" (click)=\"searchbyusermsg()\">Search</button>\n    </form>\n  </nav>\n  </div>\n<div  class=\"container\" style=\"display: block;margin-top: 30px; background-color: oldlace; border-radius: 12px; padding: 5px 10px\" *ngFor=\"let msg of msgs;\" >\n  <div style=\"background-color: lightgreen; margin-top: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px\">\n    <h3 style=\"margin: 5px 50px\">{{msg.fromorto}}  {{msg.text}} </h3>\n      <div class=\"modal-content\" style=\"display: block;margin-top: 5px;background-color: white; margin-bottom: 10px\">          \n        <h4 style=\"margin: 50px 30px\">{{msg.message}}</h4>     \n      <button  class=\"btn btn-success \" (click)=\"reply(msg)\" style=\"width: 10%;margin: 1% 50%\">Reply <i class=\"fas fa-reply\"></i></button>    \n      </div>\n  </div>\n<div id=\"myModal\" class=\"modal\"  *ngIf=\"show\" style=\"display: block ; \">\n<div class=\"modal-content\">\n    <span class=\"close\" (click)=\"cancel()\">&times;</span>\n    <h3>Enter Your Message Here</h3>\n    <textarea rows=\"2\" cols=\"20\" [(ngModel)]=\"msgtosend\">\n      </textarea>\n      <div *ngIf=\"displayreport\"  style=\"display: block ; \">\n          <h5>{{submsg}}</h5>\n      </div>\n      <div style=\"margin-top: 10px; margin-bottom: 10px\">\n\n      <button  class=\"btn btn-danger btn-md close\" (click)=\"cancel()\" style=\"height:50px ;width: 20%;margin-left: 15%;margin-right: 15%; float: left\">Cancel <i class=\"fas fa-ban\"></i></button>\n      <button class=\"btn btn-success close\" (click)=\"sendmsg()\" style=\"height:50px ;width: 20%;margin-left: 15%;margin-right: 15%; float: left\">Send <i class=\"fas fa-step-forward\"></i></button>\n      </div>\n  </div>\n  </div>\n  </div>\n<app-footer></app-footer>"
 
 /***/ }),
 
@@ -1143,6 +1161,7 @@ var MymessgesComponent = /** @class */ (function () {
         this.msgreport = "";
         this.displayreport = false;
         this.submsg = "";
+        this.srch = "";
     }
     MymessgesComponent.prototype.ngOnInit = function () {
         this.getallmessages();
@@ -1204,6 +1223,42 @@ var MymessgesComponent = /** @class */ (function () {
             _this.mymessage = "";
             // this.cancel();
             _this.getallmessages();
+        });
+    };
+    MymessgesComponent.prototype.getsentby = function () {
+        var _this = this;
+        this._userservice.getallmessagessendbyme().subscribe(function (allmsgs) {
+            console.log(allmsgs);
+            var stringify = JSON.stringify(allmsgs);
+            console.log("data");
+            console.log(stringify);
+            _this.messagesarray = JSON.parse(stringify);
+            _this.myemail = _this._userservice.getemail();
+            _this.extractdata();
+        });
+    };
+    MymessgesComponent.prototype.getreceivedby = function () {
+        var _this = this;
+        this._userservice.getallmessagesreceivedtome().subscribe(function (allmsgs) {
+            console.log(allmsgs);
+            var stringify = JSON.stringify(allmsgs);
+            console.log("data");
+            console.log(stringify);
+            _this.messagesarray = JSON.parse(stringify);
+            _this.myemail = _this._userservice.getemail();
+            _this.extractdata();
+        });
+    };
+    MymessgesComponent.prototype.searchbyusermsg = function () {
+        var _this = this;
+        this._userservice.getallmessagessendorreceivedby(this.srch).subscribe(function (allmsgs) {
+            console.log(allmsgs);
+            var stringify = JSON.stringify(allmsgs);
+            console.log("data");
+            console.log(stringify);
+            _this.messagesarray = JSON.parse(stringify);
+            _this.myemail = _this._userservice.getemail();
+            _this.extractdata();
         });
     };
     MymessgesComponent = __decorate([
@@ -1424,10 +1479,54 @@ var SignupComponent = /** @class */ (function () {
             phonenumber: this.phonenumber,
             password: this.password
         };
-        this._userservice.adduser(user).subscribe(function (mymsg) {
-            _this.mymessage = mymsg;
-            _this.display = true;
-        });
+        var error = '';
+        var regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+        var serchfind = regexp.test(this.email);
+        if (this.name.length === 0) {
+            error += "Enter Name";
+        }
+        if (serchfind === false) {
+            error = error + "Email format Invalid";
+            this.mymessage = error;
+            this.display = true;
+            return;
+        }
+        if (this.college.length === 0) {
+            error += "Enter College";
+            this.mymessage = error;
+            this.display = true;
+            return;
+        }
+        if (this.address.length === 0) {
+            error += "Enter Address";
+            this.mymessage = error;
+            this.display = true;
+            return;
+        }
+        var phone = this.phonenumber + '';
+        if (phone.length != 10) {
+            error += ' Phone number Invalid';
+            this.mymessage = error;
+            this.display = true;
+            return;
+        }
+        if (this.password.length === 0) {
+            error += ' Enter Password';
+            this.mymessage = error;
+            this.display = true;
+            return;
+        }
+        if (error.length > 0) {
+            this.mymessage = error;
+            this.display = true;
+            return;
+        }
+        else {
+            this._userservice.adduser(user).subscribe(function (mymsg) {
+                _this.mymessage = mymsg;
+                _this.display = true;
+            });
+        }
     };
     SignupComponent.prototype.onclose = function () {
         this.display = false;
@@ -1751,6 +1850,22 @@ var UserService = /** @class */ (function () {
     UserService.prototype.getallmessages = function () {
         var userid = this.getemail();
         var myurl = this.url + "/getmsg?user=" + userid;
+        return this.http.get(myurl);
+    };
+    UserService.prototype.getallmessagessendbyme = function () {
+        var userid = this.getemail();
+        var myurl = this.url + "/getmsgsendbyme?user=" + userid;
+        return this.http.get(myurl);
+    };
+    UserService.prototype.getallmessagesreceivedtome = function () {
+        var userid = this.getemail();
+        var myurl = this.url + "/getmsgreceivedbyme?user=" + userid;
+        return this.http.get(myurl);
+    };
+    UserService.prototype.getallmessagessendorreceivedby = function (srch) {
+        var userid = this.getemail();
+        var otherid = srch;
+        var myurl = this.url + "/getmsgsendorreceivedby?user=" + userid + "&other=" + otherid;
         return this.http.get(myurl);
     };
     UserService = __decorate([

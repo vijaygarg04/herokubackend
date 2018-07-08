@@ -2,13 +2,24 @@ const mysql=require('mysql2');
 
 const connection =mysql.createConnection(
     {
-        host:'us-cdbr-iron-east-04.cleardb.net',
-        database:'heroku_46856bf9dc93c7e',
-        user:'b4a1393db7b5a5',
-        password:'17f1c2e8',
+        host:'localhost',
+        database:'bookreseller',
+        user:'root',
+        password:'12345678',
         insecureAuth:true
     }
 )
+
+
+// const connection =mysql.createConnection(
+//     {
+//         host:'us-cdbr-iron-east-04.cleardb.net',
+//         database:'heroku_46856bf9dc93c7e',
+//         user:'b4a1393db7b5a5',
+//         password:'17f1c2e8',
+//         insecureAuth:true
+//     }
+// )
 function addlisting(seller,book,author,img,price,cond,description){
     return new Promise(function(resolve,reject){
         console.log("three");
@@ -218,6 +229,46 @@ function getmsgs(id){
     })
 }
 
+function getmsgssendbyme(id){
+    return new Promise(function(resolve,reject){
+        connection.query(`SELECT * FROM msg WHERE sender='${id}'`,
+        function(err,rows,cols){
+            if(err){
+                reject(err);
+            }else{
+                resolve(rows); 
+            }
+           
+        })
+    })
+}
+function getmsgsreceivedbyme(id){
+    return new Promise(function(resolve,reject){
+        connection.query(`SELECT * FROM msg WHERE receiver='${id}'`,
+        function(err,rows,cols){
+            if(err){
+                reject(err);
+            }else{
+                resolve(rows); 
+            }
+           
+        })
+    })
+}
+    function getmsgssendorreceivedby(email,email2){
+        return new Promise(function(resolve,reject){
+            connection.query(`SELECT * FROM msg WHERE receiver='${email}' AND sender='${email2}' OR receiver='${email2}' AND sender='${email}'`,
+            function(err,rows,cols){
+                if(err){
+                    reject(err);
+                }else{
+                    resolve(rows); 
+                }
+               
+            })
+        })
+}
+
 
 exports=module.exports={
     addlisting,
@@ -234,7 +285,10 @@ exports=module.exports={
     getmywishlist,
     sendmsg,
     removemsg,
-    getmsgs
+    getmsgs,
+    getmsgssendbyme,
+    getmsgsreceivedbyme,
+    getmsgssendorreceivedby,
 }
 
 
@@ -242,19 +296,16 @@ exports=module.exports={
 
 // CREATE TABLE IF NOT EXISTS user (name VARCHAR(50) NOT NULL, email VARCHAR(50) NOT NULL PRIMARY KEY, college VARCHAR(100) NOT NULL, address VARCHAR(200) NOT NULL, phonenumber INTEGER NOT NULL, password VARCHAR(50) NOT NULL);
 
-// CREATE TABLE IF NOT EXISTS wishlist (bookid INTEGER NOT NULL, userid VARCHAR(50) NOT NULL, FOREIGN KEY userid REFERENCES user(email), FOREIGN KEY bookid REFERENCES listing(id));
-// CREATE TABLE IF NOT EXISTS msg(sender VARCHAR(50) NOT NULL, receiver VARCHAR(50) NOT NULL, bookid INTEGER NOT NULL, msg VARCHAR(200) NOT NULL,sendtime DATETIME NOT NULL, FOREIGN KEY bookid REFERENCES listing(id),FOREIGN KEY sender REFERENCES user(email),FOREIGN KEY receiver REFERENCES listing(id));
+// CREATE TABLE IF NOT EXISTS wishlist (bookid INTEGER NOT NULL, userid VARCHAR(50) NOT NULL);
+// CREATE TABLE IF NOT EXISTS msg(sender VARCHAR(50) NOT NULL, receiver VARCHAR(50) NOT NULL, bookid INTEGER NOT NULL, msg VARCHAR(200) NOT NULL);
 
-// listing={"seller":"vj042@","book":"mono","author":"vjg","img":"imglink","price":"100","description":"desc"}
 // ALTER TABLE wishlist ADD FOREIGN KEY (userid) REFERENCES user(email);
 // ALTER TABLE wishlist ADD FOREIGN KEY (bookid) REFERENCES listing(id);
 // ALTER TABLE msg ADD FOREIGN KEY (sender) REFERENCES user(email);
 // ALTER TABLE msg ADD FOREIGN KEY (receiver) REFERENCES user(email);
 // ALTER TABLE msg ADD FOREIGN KEY (bookid) REFERENCES listing(id);
 
-
-
-
+// Heroku Tried
 // Details
 // Username:	b4a1393db7b5a5
 // Password:	17f1c2e8
