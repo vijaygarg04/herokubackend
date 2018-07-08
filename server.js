@@ -481,5 +481,5 @@ app.get('/getmsgsendorreceivedby',function(req,res){
 });
 
 app.listen(port,ip,function(){
-console.log("SERVER STARTED AT 4444");
+console.log("SERVER STARTED AT "+port+"--->"+ip);
 });
