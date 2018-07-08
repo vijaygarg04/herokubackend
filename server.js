@@ -2,6 +2,8 @@ var express=require('express');
 var app=express();
 const port =process.env.PORT||4444;
 const ip=process.env.IP||'127.0.0.1';
+var path = require('path')
+const bodyParser = require('body-parser');
 
 const listing=require('./mysql/listings/listings');
 const user=require ('./mysql/users/users');
@@ -12,9 +14,10 @@ app.use(bodyparser.urlencoded({
     extended:true
 }));
 
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-app.use(express.static('public'));
+app.use( express.static('public') ) ;  
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}) );
+
 
 
 //user routes
